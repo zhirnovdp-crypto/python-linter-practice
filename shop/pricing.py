@@ -1,6 +1,3 @@
-import math
-
-
 def total_price(
     unit_price: int, quantity: int, discount_percent: int | None = None
 ) -> int:
@@ -9,8 +6,7 @@ def total_price(
         raise ValueError("Цена и количество должны быть неотрицательными")
 
     subtotal = unit_price * quantity
-    currency = "руб."
-    if discount_percent == None:
+    if discount_percent is None:
         return subtotal
 
     if not 0 <= discount_percent <= 100:
