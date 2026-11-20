@@ -1,0 +1,60 @@
+$ python --version
+Python 3.12.14
+
+$ ruff --version
+ruff 0.14.10
+
+$ ruff check --config pyproject.toml .
+I001 [*] Import block is un-sorted or un-formatted
+ --> shop/__main__.py:1:1
+  |
+1 | / from .pricing import total_price
+2 | | import argparse
+  | |_______________^
+  |
+help: Organize imports
+
+E501 Line too long (137 > 88)
+ --> shop/__main__.py:6:89
+  |
+5 | …
+6 | …on="Рассчитать стоимость заказа по цене за единицу, количеству товаров и проценту скидки.")
+  |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+7 | …, help="цена за единицу в рублях")
+8 | …help="количество товаров")
+  |
+
+F401 [*] `math` imported but unused
+ --> shop/pricing.py:1:8
+  |
+1 | import math
+  |        ^^^^
+  |
+help: Remove unused import: `math`
+
+F841 Local variable `currency` is assigned to but never used
+  --> shop/pricing.py:12:5
+   |
+11 |     subtotal = unit_price * quantity
+12 |     currency = "руб."
+   |     ^^^^^^^^
+13 |     if discount_percent == None:
+14 |         return subtotal
+   |
+help: Remove assignment to unused variable `currency`
+
+E711 Comparison to `None` should be `cond is None`
+  --> shop/pricing.py:13:28
+   |
+11 |     subtotal = unit_price * quantity
+12 |     currency = "руб."
+13 |     if discount_percent == None:
+   |                            ^^^^
+14 |         return subtotal
+   |
+help: Replace with `cond is None`
+
+Found 5 errors.
+[*] 2 fixable with the `--fix` option (2 hidden fixes can be enabled with the `--unsafe-fixes` option).
+
+Exit code: 1

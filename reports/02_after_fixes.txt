@@ -1,0 +1,20 @@
+$ ruff check --config pyproject.toml .
+All checks passed!
+
+Exit code: 0
+
+$ python -m unittest discover -s tests -v
+test_discount_boundaries (test_pricing.TotalPriceTests.test_discount_boundaries) ... ok
+test_fractional_ruble_is_rounded_down (test_pricing.TotalPriceTests.test_fractional_ruble_is_rounded_down) ... ok
+test_invalid_discount (test_pricing.TotalPriceTests.test_invalid_discount) ... ok
+test_negative_price_or_quantity (test_pricing.TotalPriceTests.test_negative_price_or_quantity) ... ok
+test_with_discount (test_pricing.TotalPriceTests.test_with_discount) ... ok
+test_without_discount (test_pricing.TotalPriceTests.test_without_discount) ... ok
+test_zero_quantity (test_pricing.TotalPriceTests.test_zero_quantity) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+Exit code: 0

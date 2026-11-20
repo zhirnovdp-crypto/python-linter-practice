@@ -1,0 +1,53 @@
+$ ruff check --config pyproject.toml .
+All checks passed!
+
+Exit code: 0
+
+$ ruff check --config pyproject.toml --select E501 examples/long_line.py
+E501 Line too long (119 > 88)
+ --> examples/long_line.py:3:89
+  |
+1 | """Пример для проверки отключения E501."""
+2 |
+3 | MESSAGE = "This example keeps a deliberately long string on one line so Ruff can report E501 when the rule is enabled."
+  |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+
+Found 1 error.
+
+Exit code: 1
+
+$ printf 'import math\n' | ruff check --config pyproject.toml -
+F401 [*] `math` imported but unused
+ --> -:1:8
+  |
+1 | import math
+  |        ^^^^
+  |
+help: Remove unused import: `math`
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.
+
+Exit code: 1
+
+$ python -m unittest discover -s tests -v
+test_discount_boundaries (test_pricing.TotalPriceTests.test_discount_boundaries) ... ok
+test_fractional_ruble_is_rounded_down (test_pricing.TotalPriceTests.test_fractional_ruble_is_rounded_down) ... ok
+test_invalid_discount (test_pricing.TotalPriceTests.test_invalid_discount) ... ok
+test_negative_price_or_quantity (test_pricing.TotalPriceTests.test_negative_price_or_quantity) ... ok
+test_with_discount (test_pricing.TotalPriceTests.test_with_discount) ... ok
+test_without_discount (test_pricing.TotalPriceTests.test_without_discount) ... ok
+test_zero_quantity (test_pricing.TotalPriceTests.test_zero_quantity) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+
+Exit code: 0
+
+$ python -m shop 120 3 --discount 25
+270
+
+Exit code: 0
